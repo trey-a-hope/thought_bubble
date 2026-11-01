@@ -1,16 +1,26 @@
 # thought_bubble
 
-A new Flutter project.
+A Flutter sandbox for trying out [solidart](https://pub.dev/packages/flutter_solidart) signals and the `solid_annotations` code style, where you write plain classes with `@SolidState`, `@SolidEffect` and `@SolidEnvironment` annotations and get reactive Flutter widgets.
 
-## Getting Started
+## What's in it
 
-This project is a starting point for a Flutter application.
+- **`source/`**: the annotated input. `source/main.dart` is a counter widget with `@SolidState` fields and a `@SolidEffect`; `source/environment.dart` shows a `Counter` class injected into a widget with `@SolidEnvironment`.
+- **`lib/`**: the matching hand-converted / generated output using `flutter_solidart` directly: `Signal`, `Computed` (`doubleCounter`), `Effect`, `SignalBuilder` and `SolidProvider` for dependency injection.
+- `lib/main.dart` sets `SolidartConfig.autoDispose = false`, sets up a pretty-printing `logger`, and opens the counter demo.
 
-A few resources to get you started if this is your first Flutter project:
+A commented-out `EnvironmentExample2` in `environment.dart` records an injection style that didn't work yet.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tech stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter, Dart `^3.9`
+- `flutter_solidart` 2.7, `solid_annotations`
+- `logger`, `very_good_analysis`
+
+## Running it
+
+```sh
+flutter pub get
+flutter run
+```
+
+Compare a file in `source/` with its twin in `lib/` to see what each annotation turns into.
